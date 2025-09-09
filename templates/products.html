@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}Products - AquaPump{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <h1 class="text-center mb-5">Our Products</h1>
+
+    <!-- Centrifugal Pumps -->
+    <h2 class="mb-4">Centrifugal Pumps</h2>
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <!-- TODO: Replace icon with product image -->
+                <div class="card-body text-center">
+                    <i class="fas fa-cogs fa-5x text-primary mb-3"></i>
+                    <h5 class="card-title">Model AP-C100</h5>
+                    <p class="card-text">A versatile and efficient centrifugal pump for general industrial use.</p>
+                    <a href="#" class="btn btn-primary">Request Info</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <!-- TODO: Replace icon with product image -->
+                <div class="card-body text-center">
+                    <i class="fas fa-cogs fa-5x text-primary mb-3"></i>
+                    <h5 class="card-title">Model AP-C200</h5>
+                    <p class="card-text">High-pressure pump designed for demanding applications.</p>
+                    <a href="#" class="btn btn-primary">Request Info</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Submersible Pumps -->
+    <h2 class="mt-5 mb-4">Submersible Pumps</h2>
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <!-- TODO: Replace icon with product image -->
+                <div class="card-body text-center">
+                    <i class="fas fa-water fa-5x text-primary mb-3"></i>
+                    <h5 class="card-title">Model AP-S100</h5>
+                    <p class="card-text">Durable submersible pump for wastewater and drainage.</p>
+                    <a href="#" class="btn btn-primary">Request Info</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Solutions -->
+    <h2 class="mt-5 mb-4">Custom Solutions</h2>
+    <p>We can design and manufacture custom pump solutions to meet your specific requirements. Contact us to learn more.</p>
+    <a href="{{ url_for('contact') }}" class="btn btn-secondary">Contact Us for a Custom Quote</a>
+
+</div>
+{% endblock %}

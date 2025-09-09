@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}Contact Us - AquaPump{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <h1 class="text-center mb-5">Contact Us</h1>
+
+    <div class="row">
+        <!-- Contact Form -->
+        <div class="col-md-8">
+            <h2 class="mb-4">Request a Quote or Send a Message</h2>
+            <form>
+                <div class="mb-3">
+                    <label for="name" class="form-label">Your Name</label>
+                    <input type="text" class="form-control" id="name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Your Email</label>
+                    <input type="email" class="form-control" id="email" required>
+                </div>
+                <div class="mb-3">
+                    <label for="company" class="form-label">Your Company</label>
+                    <input type="text" class="form-control" id="company">
+                </div>
+                <div class="mb-3">
+                    <label for="message" class="form-label">Message</label>
+                    <textarea class="form-control" id="message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Send Message</button>
+            </form>
+        </div>
+
+        <!-- Contact Information -->
+        <div class="col-md-4">
+            <h2 class="mb-4">Our Information</h2>
+            <div class="p-4 bg-light rounded">
+                <p><strong><i class="fas fa-map-marker-alt text-primary"></i> Address:</strong><br>
+                123 Industrial Park<br>
+                Innovation City, TX 75001</p>
+
+                <p><strong><i class="fas fa-phone text-primary"></i> Phone:</strong><br>
+                (123) 456-7890</p>
+
+                <p><strong><i class="fas fa-envelope text-primary"></i> Email:</strong><br>
+                sales@aquapump.com</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

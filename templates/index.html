@@ -1,40 +1,101 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>count: </title>
-    <!-- Bootstrap CDN -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            background: linear-gradient(to right, #6a11cb, #2575fc);
-            color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            font-family: 'Segoe UI', sans-serif;
-        }
-        .card {
-            background: rgba(6,9,3,0.5);
-            padding: 2rem;
-            border-radius: 15px;
-            text-align: center;
-        }
-        h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-        p {
-            font-size: 1.5rem;
-        }
-    </style>
-</head>
-<body>
-    <div class="card">
-        <h1>welcome!</h1>
-        <p>visit number: <strong>{{ visits }}</strong></p>
-    </div>
-</body>
-</html>
+{% extends "base.html" %}
 
+{% block title %}Home - AquaPump{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<!-- TODO: Add a background image here. e.g., style="background-image: url('{{ url_for('static', filename='images/hero-background.jpg') }}');" -->
+<header class="hero-section text-white text-center">
+    <div class="container">
+        <h1 class="display-4">Reliable Industrial Pumping Solutions for Every Industry.</h1>
+        <p class="lead">Your partner in fluid management and industrial pumping solutions.</p>
+        <a href="{{ url_for('contact') }}" class="btn btn-primary btn-lg">Request a Quote</a>
+        <a href="{{ url_for('products') }}" class="btn btn-secondary btn-lg">View Products</a>
+    </div>
+</header>
+
+<!-- Mission & Industries Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h2>Our Mission</h2>
+                <p>To provide the most reliable, efficient, and innovative pumping solutions to our clients worldwide. We are committed to quality, safety, and customer satisfaction.</p>
+            </div>
+            <div class="col-md-6">
+                <h2>Industries We Serve</h2>
+                <ul>
+                    <li>Oil & Gas</li>
+                    <li>Water & Wastewater</li>
+                    <li>Chemical Processing</li>
+                    <li>Mining & Construction</li>
+                    <li>Power Generation</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Product Categories Section -->
+<section class="bg-light py-5">
+    <div class="container">
+        <h2 class="text-center mb-4">Core Product Categories</h2>
+        <div class="row text-center">
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <!-- TODO: Replace icon with product image -->
+                    <!-- <img src="{{ url_for('static', filename='images/centrifugal-pump.jpg') }}" class="card-img-top" alt="Centrifugal Pump"> -->
+                    <div class="card-body">
+                        <i class="fas fa-cogs fa-3x text-primary mb-3"></i>
+                        <h5 class="card-title">Centrifugal Pumps</h5>
+                        <p class="card-text">High-efficiency pumps for a wide range of applications.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <!-- TODO: Replace icon with product image -->
+                    <!-- <img src="{{ url_for('static', filename='images/submersible-pump.jpg') }}" class="card-img-top" alt="Submersible Pump"> -->
+                    <div class="card-body">
+                        <i class="fas fa-water fa-3x text-primary mb-3"></i>
+                        <h5 class="card-title">Submersible Pumps</h5>
+                        <p class="card-text">Durable and reliable pumps for underwater applications.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <!-- TODO: Replace icon with product image -->
+                    <!-- <img src="{{ url_for('static', filename='images/custom-solution.jpg') }}" class="card-img-top" alt="Custom Solution"> -->
+                    <div class="card-body">
+                        <i class="fas fa-wrench fa-3x text-primary mb-3"></i>
+                        <h5 class="card-title">Custom Solutions</h5>
+                        <p class="card-text">Tailor-made pumping solutions to meet your specific needs.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Trust Signals Section -->
+<section class="py-5">
+    <div class="container">
+        <h2 class="text-center mb-4">Why Choose AquaPump?</h2>
+        <div class="row text-center">
+            <div class="col-md-4">
+                <h4><i class="fas fa-certificate text-primary"></i> ISO 9001 Certified</h4>
+                <p>Ensuring the highest quality standards in all our products.</p>
+            </div>
+            <div class="col-md-4">
+                <h4><i class="far fa-clock text-primary"></i> 25+ Years in Business</h4>
+                <p>A long history of providing reliable solutions and expert service.</p>
+            </div>
+            <div class="col-md-4">
+                <h4><i class="fas fa-industry text-primary"></i> Trusted by Industry Leaders</h4>
+                <p>Serving a wide range of clients from small businesses to Fortune 500 companies.</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
