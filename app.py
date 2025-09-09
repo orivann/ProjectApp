@@ -1,26 +1,51 @@
-from flask import Flask, render_template
+from flask import Flask, session, render_template
+from flask_session import Session
+import redis
+import os
 
-app = Flask(__name__)
+def create_app(config_overrides=None):
+    app = Flask(__name__)
 
-@app.route("/")
-def home():
-    return render_template("index.html")
+    # Session configuration
+    app.config["SECRET_KEY"] = "supersecretkey"
+    app.config["SESSION_TYPE"] = "redis"
+    app.config["SESSION_REDIS"] = redis.Redis(
+        host=os.environ.get("REDIS_HOST", "redis"),
+        port=int(os.environ.get("REDIS_PORT", 6379))
+    )
 
-@app.route("/products")
-def products():
-    return render_template("products.html")
+    if config_overrides:
+        app.config.update(config_overrides)
 
-@app.route("/services")
-def services():
-    return render_template("services.html")
+    Session(app)
 
-@app.route("/about")
-def about():
-    return render_template("about.html")
+    # Routes
+    @app.route("/")
+    def index():
+        if "visits" in session:
+            session["visits"] = session.get("visits") + 1
+        else:
+            session["visits"] = 1
+        return render_template("index.html", visits=session["visits"])
 
-@app.route("/contact")
-def contact():
-    return render_template("contact.html")
+    @app.route("/products")
+    def products():
+        return render_template("products.html")
+
+    @app.route("/services")
+    def services():
+        return render_template("services.html")
+
+    @app.route("/about")
+    def about():
+        return render_template("about.html")
+
+    @app.route("/contact")
+    def contact():
+        return render_template("contact.html")
+
+    return app
 
 if __name__ == "__main__":
+    app = create_app()
     app.run(host="0.0.0.0", port=5000)
