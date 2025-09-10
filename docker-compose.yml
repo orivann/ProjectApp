@@ -1,0 +1,7 @@
+services:
+  aquapump-web:
+    build: ./aquapump-mvp-forge
+    container_name: aquapump-mvp
+    ports:
+      - "8080:80"
+    restart: always
