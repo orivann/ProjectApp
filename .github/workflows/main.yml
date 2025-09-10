@@ -17,8 +17,7 @@ jobs:
 
       - name: Verify Dockerfile exists
         run: |
-          echo "Current directory:"
-          pwd
+          cd /home/ori/ProjectApp/aquapump-mvp-forge
           echo "Files in directory:"
           ls -la
           echo "First lines of Dockerfile:"
