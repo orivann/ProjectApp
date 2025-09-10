@@ -1,4 +1,4 @@
-name: Build and Push Image to AWS ECR
+name: Build and Push AquaPump Frontend to ECR
 
 on:
   push:
@@ -12,6 +12,15 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+
+      - name: Verify frontend files
+        run: |
+          echo "Listing frontend folder contents:"
+          ls -la aquapump-mvp-forge
+          if [ ! -f aquapump-mvp-forge/Dockerfile ]; then
+            echo "ERROR: Dockerfile not found in aquapump-mvp-forge/"
+            exit 1
+          fi
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
