@@ -2,27 +2,16 @@ name: Build and Push Image to AWS ECR
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
 
 jobs:
   build-and-push:
-    name: Build and Push to ECR
     runs-on: ubuntu-latest
 
     steps:
-
       - name: Checkout repository
-        uses: actions/checkout@v2
-
-
-      - name: Verify Dockerfile exists
-        run: |
-          cd /home/ori/ProjectApp/aquapump-mvp-forge
-          echo "Files in directory:"
-          ls -la
-          echo "First lines of Dockerfile:"
-          head -20 Dockerfile
-
+        uses: actions/checkout@v3
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
@@ -31,18 +20,17 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: eu-north-1
 
-
       - name: Login to Amazon ECR
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
 
-
       - name: Build, Tag, and Push Docker Image
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          ECR_REPOSITORY: testrepo
+          ECR_REPOSITORY: aquapump-mvp
           IMAGE_TAG: ${{ github.sha }}
         run: |
-          echo "Building image $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
-          docker build -f Dockerfile -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+          docker build -f aquapump-mvp-forge/Dockerfile \
+            -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG \
+            ./aquapump-mvp-forge
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
